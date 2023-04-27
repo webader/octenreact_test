@@ -3,7 +3,7 @@ import React from 'react';
 const Simpson = ({simpson}) => {
     const {id,name,gender,photo} = simpson;
     return (
-        <div>
+        <div class="container">
             <div>id: {id}</div>
             <div>name: {name}</div>
             <div>gender: {gender}</div>
