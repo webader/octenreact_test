@@ -1,22 +1,12 @@
 import {useForm} from "react-hook-form";
+import {savePost} from "./services/post.api.service";
 
 const App = () => {
-    let {register,handleSubmit,watch,formState:{errors}} = useForm({defaultValues:{title:'title default'}});
+    let {register,handleSubmit,formState:{errors}} = useForm({defaultValues:{title:'title default'}});
     const onSubmit = (data) => {
         console.log(data);
-
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            // відправлення щоб зберегти дані в плайсхолдере
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-            },
-        })
-            .then((response) => response.json())
-            .then((json) => console.log(json));
+        savePost(data).then(({data}) => console.log(data));
     }
-    console.log(watch('title'))
 
     return (
         <div>
