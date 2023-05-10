@@ -1,11 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import PostComponent from "../components/PostComponent";
+import ApiService from "../services/api.service";
+import {Outlet} from "react-router-dom";
 
-const Posts = () => {
+export default function Posts()  {
+    let apiService = new ApiService('posts');
+    let [posts,setPosts] = useState([]);
+    useEffect(()=> {
+        apiService.getAllData().then(value => setPosts(value));
+    },[]);
     return (
         <div>
-            Posts
+            <Outlet/>
+            {
+                posts.map(value => <PostComponent key={value.id} item={value}/>)
+            }
+
         </div>
     );
 };
 
-export default Posts;

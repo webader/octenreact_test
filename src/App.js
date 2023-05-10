@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Users from "./pages/Users";
 import Posts from "./pages/Posts";
 import Comments from "./pages/Comments";
+import UserDetails from "./pages/UserDetails";
+import PostDateils from "./pages/PostDateils";
 
 const App = () => {
   return (
@@ -24,8 +26,12 @@ const App = () => {
               <Routes>
                   <Route index path={'/'} element={<Home/>}/>
                   <Route path={'/layout'} element={<Layout/>}>
-                      <Route path={'users'} element={<Users/>}/>
-                      <Route path={'posts'} element={<Posts/>}/>
+                      <Route path={'users'} element={<Users/>}>
+                          <Route path={':id'} element={<UserDetails/>}/>
+                      </Route>
+                      <Route path={'posts'} element={<Posts/>}>
+                          <Route path={':id'} element={<PostDateils/>}/>
+                      </Route>
                       <Route path={'comments'} element={<Comments/>}/>
                   </Route>
 
