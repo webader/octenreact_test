@@ -1,22 +1,32 @@
 import React, {useEffect, useState} from 'react';
-import PostComponent from "../components/PostComponent";
-import ApiService from "../services/api.service";
+import Post from "./Post";
 import {Outlet} from "react-router-dom";
 
-export default function Posts()  {
-    let apiService = new ApiService('posts');
+const Posts = () => {
     let [posts,setPosts] = useState([]);
-    useEffect(()=> {
-        apiService.getAllData().then(value => setPosts(value));
+    useEffect(() => {
+        fetch('https://jsonplaceholder.typicode.com/posts')
+            .then(value => value.json())
+            .then(value => {
+                setPosts([...value])
+            });
+
     },[]);
     return (
         <div>
-            <Outlet/>
-            {
-                posts.map(value => <PostComponent key={value.id} item={value}/>)
-            }
-
+            <div>
+                <h4>post details view</h4>
+                <Outlet/>
+            </div>
+            <div>
+                <h3>All posts</h3>
+                {
+                    posts.map(value => <Post item={value} key={value.id}/>)
+                }
+            </div>
         </div>
     );
 };
+
+export default Posts;
 

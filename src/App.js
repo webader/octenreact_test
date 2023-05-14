@@ -7,7 +7,7 @@ import Users from "./pages/Users";
 import Posts from "./pages/Posts";
 import Comments from "./pages/Comments";
 import UserDetails from "./pages/UserDetails";
-import PostDateils from "./pages/PostDateils";
+import PostDetails from "./pages/PostDetails";
 
 const App = () => {
   return (
@@ -15,14 +15,20 @@ const App = () => {
           <div>
               <h2>menu</h2>
                   <ul>
-                      <li><Link to={'/'}>home</Link></li>
-                      <li><Link to={'/layout'}>layout</Link></li>
-                      <li><Link to={'/about'}>about</Link></li>
+                      <li>
+                          <Link to={'/'}>home</Link>
+                      </li>
+                      <li>
+                          <Link to={'/layout'}>layout</Link>
+                      </li>
+                      <li>
+                          <Link to={'/about'}>about</Link>
+                      </li>
                   </ul>
           </div>
 
           <div>
-              <h2>content</h2>
+              <h2>views</h2>
               <Routes>
                   <Route index path={'/'} element={<Home/>}/>
                   <Route path={'/layout'} element={<Layout/>}>
@@ -30,12 +36,10 @@ const App = () => {
                           <Route path={':id'} element={<UserDetails/>}/>
                       </Route>
                       <Route path={'posts'} element={<Posts/>}>
-                          <Route path={':id'} element={<PostDateils/>}/>
+                          <Route path={':id'} element={<PostDetails/>}/>
                       </Route>
                       <Route path={'comments'} element={<Comments/>}/>
                   </Route>
-
-
                   <Route path={'/about'} element={<About/>}/>
               </Routes>
           </div>

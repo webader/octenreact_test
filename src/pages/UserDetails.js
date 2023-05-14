@@ -2,11 +2,11 @@ import React from 'react';
 import {useLocation} from "react-router-dom";
 
 const UserDetails = () => {
-    let location = useLocation();
-    let {state:user} = location;
+    let {state} = useLocation();
+    //console.log(state);
     return (
         <div>
-            {JSON.stringify(user)}
+            {JSON.stringify(state)}
         </div>
     );
 };
